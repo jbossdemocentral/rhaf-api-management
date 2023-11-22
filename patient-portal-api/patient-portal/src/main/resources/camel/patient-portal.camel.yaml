@@ -1,0 +1,47 @@
+- route:
+    id: route-abab
+    from:
+      uri: direct
+      id: from-4230
+      parameters:
+        name: doctorsGET
+      steps:
+        - setBody:
+            expression:
+              simple:
+                expression: select* from doctors order by id
+                id: simple-af91
+            id: setBody-5434
+        - to:
+            uri: jdbc
+            id: to-b7a7
+            parameters:
+              dataSourceName: datasource
+        - split:
+            expression:
+              simple:
+                expression: ${body}
+                id: simple-f120
+            aggregationStrategy: ListOf
+            id: split-39da
+            steps:
+              - to:
+                  uri: kamelet:mask-field-action
+                  id: to-751b
+                  parameters:
+                    fields: email
+                    replacement: '*******'
+              - to:
+                  uri: kamelet:mask-field-action
+                  id: to-00b2
+                  parameters:
+                    fields: phone
+                    replacement: '***-***-****'
+        - to:
+            uri: kamelet:hoist-field-action
+            id: to-c4d7
+            parameters:
+              field: doctors
+- beans:
+    - name: ListOf
+      type: org.apache.camel.processor.aggregate.GroupedBodyAggregationStrategy

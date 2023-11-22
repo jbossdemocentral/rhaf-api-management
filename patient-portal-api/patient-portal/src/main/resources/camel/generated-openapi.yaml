@@ -1,0 +1,6 @@
+- rest:
+    get:
+    - id: "doctorsGET"
+      path: "/doctors"
+      produces: "application/json"
+      to: "direct:doctorsGET"

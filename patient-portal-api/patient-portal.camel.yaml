@@ -28,4 +28,4 @@
         databaseName: patient_portal
         user: patient_portal
         password: secret
-      type: org.postgresql.jdbc3.Jdbc3SimpleDataSource
+      type: org.postgresql.ds.PGSimpleDataSource
