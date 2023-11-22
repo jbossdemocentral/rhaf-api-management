@@ -1,0 +1,31 @@
+- route:
+    id: route-abab
+    from:
+      uri: direct
+      id: from-4230
+      parameters:
+        name: doctorsGET
+      steps:
+        - setBody:
+            expression:
+              simple:
+                expression: select id, name from doctors order by id
+                id: simple-af91
+            id: setBody-5434
+        - to:
+            uri: jdbc
+            id: to-b7a7
+            parameters:
+              dataSourceName: myDataSource
+        - to:
+            uri: kamelet:hoist-field-action
+            id: to-0679
+            parameters:
+              field: doctors
+- beans:
+    - name: myDataSource
+      properties:
+        databaseName: patient_portal
+        user: patient_portal
+        password: secret
+      type: org.postgresql.jdbc3.Jdbc3SimpleDataSource

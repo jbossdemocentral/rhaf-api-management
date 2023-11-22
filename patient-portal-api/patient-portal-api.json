@@ -1,0 +1,78 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Patient Portal API",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "paths": {
+        "/doctors": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Doctor"
+                                    }
+                                },
+                                "examples": {
+                                    "doctors": {
+                                        "value": [
+                                            {
+                                                "id": 56,
+                                                "name": "Dr Jekyll",
+                                                "phome": "some text",
+                                                "email": "some text"
+                                            },
+                                            {
+                                                "id": 41,
+                                                "name": "Dr Hyde",
+                                                "phome": "some text",
+                                                "email": "some text"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "doctors"
+                    }
+                },
+                "operationId": "doctorsGET"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Doctor": {
+                "title": "Root Type for Doctor",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "phome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "name": "Dr Jekyll",
+                    "phome": "555-555-99",
+                    "email": "something@example.com"
+                }
+            }
+        }
+    }
+}
