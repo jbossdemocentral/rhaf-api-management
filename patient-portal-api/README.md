@@ -89,7 +89,69 @@ camel run patient-portal.camel.yaml --open-api patient-portal-api.json --deps or
 
 In this command we are telling camel to run our yaml file with the route and use the provided OpenAPI as the REST DSL configuration. As we are running the Camel Main engine, we need to add the dependency to the database driver so Camel can connec to the database.
 
-## Export to Quarkus project
+You can use HTTPie to test the API:
+
+```shell
+http :8080/doctors
+```
+
+You should see an output similar to the following:
+
+```shell
+HTTP/1.1 200 OK
+Accept: */*
+Accept-Encoding: gzip, deflate
+Content-Type: application/json
+User-Agent: HTTPie/3.2.2
+transfer-encoding: chunked
+```
+
+With the following payload as JSON.
+
+```json
+{
+    "doctors": [
+        {
+            "email": "hawkeye@example.net",
+            "id": 1,
+            "name": "Benjamin Pierce",
+            "phone": "555-555-1001"
+        },
+        {
+            "email": "gates@example.net",
+            "id": 2,
+            "name": "Beverly Crusher",
+            "phone": "555-555-1002"
+        },
+        {
+            "email": "neil@example.net",
+            "id": 3,
+            "name": "Doogie Howser",
+            "phone": "555-555-1003"
+        },
+        {
+            "email": "bones@example.net",
+            "id": 4,
+            "name": "Leonard McCoy",
+            "phone": "555-555-1004"
+        },
+        {
+            "email": "drmike@example.net",
+            "id": 5,
+            "name": "Michaela Quinn",
+            "phone": "555-555-1005"
+        },
+        {
+            "email": "chief@example.net",
+            "id": 6,
+            "name": "Miranda Bailey",
+            "phone": "555-555-1006"
+        }
+    ]
+}
+```
+
+### Export to Quarkus project
 
 If you want to have a more complex integration you can generate a Quarkus project using the Camel route YAML file.
 
